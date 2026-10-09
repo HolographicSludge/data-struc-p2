@@ -1,40 +1,41 @@
 #include <iostream>
 #include <memory>
-
 #include "MusicPlayer.h"
 #include "Playlist.h"
 #include "Podcast.h"
 #include "Song.h"
 
 int main() {
-    Playlist playlist("Study Mix");
-    playlist.addToEnd(std::make_unique<Song>("Clair de Lune", "Debussy", 305));
-    playlist.addToEnd(std::make_unique<Song>("Weightless", "Marconi Union", 485));
-    playlist.addToEnd(std::make_unique<Podcast>("Intro to Deques", "Dana Lee", 12, 1260));
-    playlist.addToEnd(std::make_unique<Song>("Gymnopedie No. 1", "Satie", 190));
-
+    std::cout << "Begin example demonstration\n";
+    Playlist playlist("cvnt");
+    playlist.addToEnd(std::make_unique<Song>("Overclocked", "DryftiN", 185));
+    playlist.addToEnd(std::make_unique<Song>("American Idiot", "Green Day", 174));
+    playlist.addToEnd(std::make_unique<Podcast>("How to Not Give a Fuck", "GuyOnTumblr", 69, 1260));
+    playlist.addToEnd(std::make_unique<Song>("Young Girl A", "Siinamota", 242));
+    playlist.addToEnd(std::make_unique<Podcast>("Idk I Don't Listen to Podcasts", "Joe Rogan's Gay Boyfriend", 12, 604800));
+    playlist.addToEnd(std::make_unique<Song>("PUPPYPLAY", "MAILPUP", 172));
     MusicPlayer player(playlist);
 
-    std::cout << "=== Initial state ===\n";
+    std::cout << "\nStarting state of playlist:\n";
     playlist.print();
     player.play();
 
-    std::cout << "\n=== Skip forward 5 times (wraps around the 4-item list) ===\n";
-    for (int i = 0; i < 5; ++i) player.skip();
+    std::cout << "\nSkip forward 8x (wraps around the 6-item example playlist)\n";
+    for (int i = 0; i < 8; i++) player.skip();
 
-    std::cout << "\n=== Go back twice ===\n";
-    player.back();
-    player.back();
+    std::cout << "\nGo back 4x\n";
+    for (int i = 0; i < 4; i++) player.back();
 
-    std::cout << "\n=== Queue a song to play next ===\n";
-    playlist.playNext(std::make_unique<Song>("Nocturne Op. 9 No. 2", "Chopin", 270));
+    std::cout << "\nQueue another song to play next\n";
+    playlist.playNext(std::make_unique<Song>("Ego Renegade Boy", "FLAVOR FOLEY", 199));
     playlist.print();
-    player.skip();
 
-    std::cout << "\n=== Empty playlist is handled safely ===\n";
+    std::cout << "\nDemonstration 2: empty playlist is handled safely\n";
     Playlist empty("Empty");
     MusicPlayer emptyPlayer(empty);
     emptyPlayer.play();
     emptyPlayer.skip();
+    std::cout << "If you're seeing this line, no errors were thrown\n";
+
     return 0;
 }
