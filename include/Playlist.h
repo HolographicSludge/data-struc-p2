@@ -12,6 +12,7 @@
 //   previous()  : pop_back  -> push_front  (last item becomes current)
 //   addToEnd()  : push_back
 //   playNext()  : insert right after the current item
+//   removeCurrent() : pop_front;  removeAt(i) : erase(begin() + i)
 // Because both ends are O(1), cycling forward and backward is cheap and the
 // playlist loops forever with no index bookkeeping.
 class Playlist {
@@ -24,6 +25,12 @@ public:
 
     void addToEnd(std::unique_ptr<MediaItem> item);
     void playNext(std::unique_ptr<MediaItem> item);
+
+    // Remove the current item (index 0). Returns false if the playlist is empty.
+    bool removeCurrent();
+    // Remove the item at a position in play order (0 = current).
+    // Returns false if the index is out of range.
+    bool removeAt(std::size_t index);
 
     // Both return nullptr if the playlist is empty.
     const MediaItem* current() const;

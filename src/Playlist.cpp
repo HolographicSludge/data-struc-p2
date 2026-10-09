@@ -15,6 +15,18 @@ void Playlist::playNext(std::unique_ptr<MediaItem> item) {
     }
 }
 
+bool Playlist::removeCurrent() {
+    if (items_.empty()) return false;
+    items_.pop_front();
+    return true;
+}
+
+bool Playlist::removeAt(std::size_t index) {
+    if (index >= items_.size()) return false;
+    items_.erase(items_.begin() + index);
+    return true;
+}
+
 const MediaItem* Playlist::current() const {
     return items_.empty() ? nullptr : items_.front().get();
 }

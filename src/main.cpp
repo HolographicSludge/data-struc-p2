@@ -30,6 +30,11 @@ int main() {
     playlist.playNext(std::make_unique<Song>("Ego Renegade Boy", "FLAVOR FOLEY", 199));
     playlist.print();
 
+    std::cout << "\nRemove the item at position 2, then remove the current item\n";
+    playlist.removeAt(2);
+    playlist.removeCurrent();
+    playlist.print();
+
     std::cout << "\nDemonstration 2: empty playlist is handled safely\n";
     Playlist empty("Empty");
     MusicPlayer emptyPlayer(empty);

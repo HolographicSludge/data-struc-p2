@@ -17,6 +17,7 @@ A terminal-only demo that cycles through a playlist. Nothing is played; it print
 - `next()`: `push_back(front)` then `pop_front()` (current item moves to the back)
 - `previous()`: `push_front(back)` then `pop_back()`
 - `addToEnd()`: `push_back`; `playNext()`: insert at position 1
+- `removeCurrent()`: `pop_front`; `removeAt(i)`: `erase(begin() + i)`
 - Both ends are O(1), so the playlist loops forever without index math.
 
 ## OOP concepts shown
